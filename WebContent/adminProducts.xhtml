@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough" 
+	>
+
+
+<!-- Head -->
+<ui:include src="includes/head.xhtml" />
+
+<h:panelGroup rendered="#{empty USER or USER.uloga ne 'admin' }">
+<h:form><h:commandButton value="login" rendered="#{korisnikBean.redirect()}" /></h:form>
+</h:panelGroup>
+
+<body>
+	
+	
+	<!-- Header -->
+	<ui:include src="includes/header.xhtml" />
+	
+	
+	<section id="cart_items">
+		<div class="container">
+		
+			<div style="display:flex; justify-content: center; padding-bottom:50px;">
+				<div class="table-responsive cart_info">
+					<h:form>
+						<p><h:commandLink class="btn btn-success" action="#{proizvodBean.dodajProizvod()}">Dodaj Proizvod</h:commandLink></p>
+						<table class="table table-condensed">
+						  <thead>
+						    <tr class="cart_menu">
+						      
+						      <th>Naziv</th>
+						      <th>Kolicina</th>
+						      <th>Cena</th>
+						      <th>Obrisi</th>
+						      <th>Izmeni</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  
+						  <ui:repeat value="#{proizvodBean.vratiSveProizvode()}" var="p">
+						    <tr>
+							  
+						      <td class="cart_description">
+								 <h:commandLink  action="#{proizvodBean.detaljiOProizvodu(p)}"> <h:outputText value="#{p.naziv}" /> </h:commandLink>
+							  </td>
+						      <td><h:outputText value="#{p.kolicina}"/></td>
+						      <td><h:outputText value="#{p.cena}"/> rsd</td>
+						      
+						      <td>
+						      		<h:commandLink class="btn btn-danger" action="#{proizvodBean.obrisiProizvod(p)}"><i class="fa fa-times"></i></h:commandLink>
+						      </td>
+						      <td>
+						      		<h:commandLink action="#{proizvodBean.izmeniProizvod(p)}"> Izmeni </h:commandLink>
+						      </td>
+						    </tr>
+						   </ui:repeat>
+						   	
+						  </tbody>
+						</table>
+					</h:form>
+				</div>
+			</div>	
+			
+			
+		</div>
+	</section>
+
+<ui:include src="includes/footer.xhtml" />
+
+</body>
+</html>

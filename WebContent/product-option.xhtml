@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough" 
+	>
+
+
+<!-- Head -->
+<ui:include src="includes/head.xhtml" />
+
+<h:panelGroup rendered="#{empty USER or USER.uloga ne 'admin' }">
+<h:form><h:commandButton value="login" rendered="#{korisnikBean.redirect()}" /></h:form>
+</h:panelGroup>
+
+<body onload="#{kategorijeBean.getKategorije()}">
+	
+	<!-- Header -->
+	<ui:include src="includes/header.xhtml" />
+
+	<section id="cart_items">
+		<div class="container">
+		
+			<h:form enctype="multipart/form-data"  prependId="false"  style="margin:2rem 0;" >
+			
+			
+			<div style="display:flex; justify-content: center; padding-bottom:20px;">
+			<div class="table-responsive cart_info">
+					<table class="table table-condensed">
+					  <thead>
+					  	<tr class="cart_menu">
+					  		<th colspan="2" style="text-align: center;">
+							<h:panelGroup rendered="#{not empty IZMENIPROIZVOD }">
+								Izmena proizvoda
+							</h:panelGroup>
+							 <h:panelGroup rendered="#{not empty DODAJPROIZVOD }">
+								Dodaj proizvod
+							 </h:panelGroup>
+							</th>
+					  	</tr>
+					  </thead>
+					    <tr>
+					 		<td><label for="">Naziv Proizvoda</label> </td>
+					    	<td> <h:inputText class="form-control" value="#{proizvodBean.naziv}" /> </td>
+						</tr>
+						  
+						<tr>
+						 <td><label for="">Opis Proizvoda</label> </td>
+						 <td> <h:inputTextarea class="form-control" row="15" col = "10" value="#{proizvodBean.opis}" /> </td>
+						 
+				  		</tr>
+				  		
+				  		<tr>
+						 <td><label for="">Cena Proizvoda</label> </td>
+						 <td> <h:inputText class="form-control" value="#{proizvodBean.cena}" /> </td>
+						</tr>
+						 
+						 <tr>
+						 	<td><label for="">Kolicina Na lageru</label> </td>
+						 	<td><h:inputText a:type="number" class="form-control" value="#{proizvodBean.kolicina}"  /> </td>
+						 </tr>
+	
+						 <tr>
+						  <td><label for="">Kategorija</label> </td>
+						  <td>  <h:selectOneMenu class="col col-sm-6 form-control" value = "#{proizvodBean.kategorija}"> 
+							  <f:selectItems value="#{kategorijeBean.items}"/>
+							  </h:selectOneMenu> 
+						  </td>
+						 </tr>
+						 
+						<tr>
+						 <td><label for="">Fotografija</label> </td>
+						 <td><h:inputFile a:type="file" class="form-control" value="#{proizvodBean.uploadedFile}"  /> </td>
+						</tr>
+						 
+						<tr>
+						  <td> 
+						   <h:panelGroup rendered="#{empty DODAJPROIZVOD }">
+						 	<h:commandButton class="btn btn-success" action="#{proizvodBean.izmeni()}" value="Izmeni" />
+						 </h:panelGroup>
+						  </td>
+						  
+						  <td>
+							 <h:panelGroup rendered="#{not empty DODAJPROIZVOD }">
+							 	<h:commandButton  class="btn btn-success" action="#{proizvodBean.dodaj()}" value="Dodaj" />
+							 </h:panelGroup>
+						 </td>
+					 	</tr>
+					</table>
+				 </div>
+				  
+			  </div>
+			
+			</h:form>
+			
+		</div>
+	</section> <!--/#cart_items-->
+
+
+
+
+</body>
+</html>

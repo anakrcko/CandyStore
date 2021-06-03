@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+      
+<header id="header">
+	
+		<div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="logo pull-left">
+						
+							<h:panelGroup rendered="#{not empty USER}">
+								<ul class="nav navbar-nav">
+									<li><a>Dobrodošli:  <h:outputText value="#{USER.ime}" /></a></li>
+								</ul>
+							</h:panelGroup>
+						</div>
+					</div>
+					<div class="col-sm-10">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+								
+								<h:panelGroup rendered="#{not empty USER and USER.uloga eq 'admin'}">
+									<li> <a href="#" style="color:red;"> Admin </a>	
+										<ul class="dropdown">
+											
+											 <li><a href="adminProducts.jsf">Proizvodi</a></li> 
+											<li><a href="adminCategory.jsf">Kategorije</a></li>
+											<li><a href="adminOrders.jsf">Porudzbine</a></li>
+										</ul>	
+									</li>
+								</h:panelGroup>
+								
+								<li><a href="index.jsf"> Pocetna </a></li>
+							
+								<li><a href="about.jsf"> O Nama </a></li>
+								<h:panelGroup rendered="#{empty USER}">
+									<li><a href="login.jsf"> <i class="fas fa-sign-in-alt"></i></a></li>
+								</h:panelGroup>
+								
+								<h:panelGroup rendered="#{not empty USER}">
+									<li><a href="cart.jsf"> <i class="fas fa-shopping-basket"></i> </a></li>
+									<li><h:form style="display:flex;'"> <h:commandLink  action="#{korisnikBean.odjava()}" > <i class="fas fa-sign-out-alt"></i> </h:commandLink></h:form></li>
+								</h:panelGroup>
+								
+								
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</header><!--/header-->
+
+</html>

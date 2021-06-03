@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough" 
+	>
+
+
+<!-- Head -->
+<ui:include src="includes/head.xhtml" />
+
+<h:panelGroup rendered="#{empty USER or USER.uloga ne 'admin' }">
+<h:form><h:commandButton value="login" rendered="#{korisnikBean.redirect()}" /></h:form>
+</h:panelGroup>
+
+<body>
+	
+	<!-- Header -->
+	<ui:include src="includes/header.xhtml" />
+
+	<section id="cart_items">
+		<div class="container">
+			
+			<div style="display:flex; justify-content: center;">
+				<div class="table-responsive cart_info">
+					<h:form id="form-addCategory">
+					
+						<h:message role="alert" class="alert alert-danger d-block" id="message-add" for="message-add" />
+					
+						<table class="table table-condensed">
+						  <thead>
+						    <tr class="cart_menu">
+						      
+						      <th>Kategorija</th>
+						      <th>Obrisi</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  
+						  <ui:repeat value="#{kategorijeBean.getKategorije()}" var="k">
+						    <tr>
+							  
+						      <td><h:outputText value="#{k.naziv}"/></td>
+						      
+						      <td>
+						      		<h:commandLink class="btn btn-danger" action="#{kategorijeBean.obrisi(k)}"><i class="fa fa-times"></i></h:commandLink>
+						    
+						      </td>
+						    </tr>
+						   </ui:repeat>
+						   	
+						   	<tr>
+							  
+						      <td>
+								     <h:inputText class="form-control" value="#{kategorijeBean.novNaziv}" />
+							  </td>
+						      <td>
+						      		<h:commandLink class="btn btn-success" action="#{kategorijeBean.dodaj()}"><i class="fa fa-plus" aria-hidden="true"></i></h:commandLink>
+						      </td>
+						    </tr>
+						  </tbody>
+						</table>
+					</h:form>
+				</div>
+			</div>	
+			
+			
+		</div>
+	</section> <!--/#cart_items-->
+
+
+<ui:include src="includes/footer.xhtml" />
+
+</body>
+</html>

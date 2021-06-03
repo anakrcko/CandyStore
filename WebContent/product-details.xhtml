@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough" >
+	
+<ui:include src="includes/head.xhtml" />
+
+<body>
+
+	<ui:include src="includes/header.xhtml" />
+
+	<section>
+		<div class="container">
+			<h:form>
+				<div style="display:flex; justify-content: center; padding-bottom:20px; padding-top:50px;">
+			
+				<!-- Opis proizvoda -->
+				<div class="col-sm-9 padding-right">
+					<div class="product-details">
+						<div class="col-sm-5">
+							<div class="view-product" style="overflow:hidden; display:flex; justify-content:center;">
+								 <img src="data:image/jpeg;base64, #{PROIZVOD.fotografija}"  alt="" /> 
+							</div>
+						</div>
+				
+						<div class="col-sm-7">
+							
+							<div class="product-information">
+								<h2>#{PROIZVOD.naziv}</h2>
+								<span>
+									<span>#{PROIZVOD.cena} rsd</span>
+									<h:panelGroup rendered="#{not empty USER}">
+										<h:commandLink class="btn btn-default add-to-cart" action="#{korpaBean.dodajProizvodUKorpu(USER, PROIZVOD)}"><i class="fa fa-shopping-cart"></i>Dodaj u korpu </h:commandLink>
+									</h:panelGroup>
+								</span>
+								<p><h:outputText value="#{PROIZVOD.opis}"></h:outputText></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</h:form>
+			</div>
+		
+	</section>
+	
+	
+	<ui:include src="includes/footer.xhtml" />
+	
+</body>
+</html>

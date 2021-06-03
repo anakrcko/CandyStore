@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	>
+
+<div class="col-sm-3">
+
+	<div class="left-sidebar">
+		<h2>Slatkiši</h2>
+		<div class="panel-group category-products" id="accordian">
+			<table>
+				<tr>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title"><h:commandLink  action="#{proizvodBean.resetFilter()}" >  <h:outputText value="Sve" /><f:ajax execute="@form" render="@form" /> </h:commandLink></h4>
+						</div>
+					</div>			
+				</tr>
+							
+			<ui:repeat value="#{kategorijeBean.getKategorije()}" var="k">
+									
+				<tr>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title"><h:commandLink  action="#{proizvodBean.filtrirajPoKategoriji(k)}" >  <h:outputText value="#{k.naziv}" /><f:ajax execute="@form" render="@form" /> </h:commandLink></h4>
+						</div>
+					</div>
+				</tr>
+									
+			</ui:repeat>
+			 <tr> 
+				<div class="panel panel-default">
+					<td> <h:inputText class="pretraga" value="#{proizvodBean.pretraga}" a:placeholder="Pretraga po nazivu" /></td>
+					<td> <h:commandButton class="btn btn-danger pretragaDugme" action="#{proizvodBean.resetFilter2()}" value="Pretraži" /></td>
+				</div>
+				</tr>
+		
+				<tr> 
+				<div class="panel panel-default">
+					<td> <h:inputText class="pretraga" value="#{proizvodBean.filterCena}" a:placeholder="Sortirati po ceni manjoj od:"/></td>
+					<td> <h:commandButton class="btn btn-danger pretragaDugme " a:action="#{proizvodBean.resetFilter2()}" value="Sortiraj " /></td>
+				</div>
+				</tr>
+				
+			</table>	
+						
+		</div>
+	</div>
+</div>
+				
+</html>

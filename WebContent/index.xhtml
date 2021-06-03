@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+	
+<!-- Head -->
+<ui:include src="includes/head.xhtml" />
+
+<body onload="initUser('#{USER.ime}'); return false;">
+
+	#{korisnikBean.inicijalizuj()}
+	
+	<h:panelGroup rendered="#{not empty USER}">
+		<h:commandButton id="trickyButton" rendered="#{korpaBean.kreirajKorpu(USER) }" />
+	</h:panelGroup>
+	
+	<!-- Header -->
+	<ui:include src="includes/header.xhtml" />
+
+	<h:panelGroup rendered="#{korisnikBean.isAdmin(USER)}"></h:panelGroup>
+	
+	<section id="slider">
+		<div class="container">
+			
+		</div>
+	</section>
+	
+	<section>
+		<div class="container">
+			<div class="row">
+			
+			
+			
+			
+			<h:form id="form-add" >
+			
+			
+			<h:message role="alert" class="alert alert-danger d-block" id="message-proizvodi-dodato" for="message-proizvodi-dodato" />
+			<h:message role="alert" class="alert alert-danger d-block" id="message-proizvodi-nije-dodato" for="message-proizvodi-nije-dodato" />
+							
+			
+			<ui:include src="includes/category.xhtml" /> <!-- Ispis kategorija -->
+					
+				
+				<div class="col-sm-9 padding-right">
+					<div class="row category-tab" id="proizvodii">
+						<div class="col-sm-12 tab-content">
+							<div class="features_items tab-pane fade active in "  >
+							
+							<ui:repeat value="#{proizvodBean.dajProizvode()}" var="p" id="proizvodi">
+									<div class="col-sm-12">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img src="data:image/jpeg;base64, #{p.fotografija}" alt="" />
+													<h2><h:outputText value="#{p.cena}"  /> rsd</h2>
+													<p><h:commandLink  action="#{proizvodBean.detaljiOProizvodu(p)}" data-toggle="tab" > <h:outputText value="#{p.naziv}"  /> <f:ajax execute="@form" render="@form" /></h:commandLink></p>
+													<h:panelGroup rendered="#{not empty USER}">
+														<h:commandLink class="btn btn-default add-to-cart" action="#{korpaBean.dodajProizvodUKorpu(USER, p)}"><i class="fa fa-shopping-cart"></i>Dodaj u korpu <f:ajax execute="@form" render="@form" /> </h:commandLink>
+													</h:panelGroup>
+												</div>
+											</div>
+										</div>
+									</div>
+							</ui:repeat>
+							
+							</div>
+						</div>
+					</div>	
+				</div>
+			 </h:form>
+			</div>
+		</div>
+	</section>
+	
+	
+	<h:panelGroup rendered="#{USER ne null}">
+		<h:form>
+		
+			<a class="open-button" onclick="openForm()">Chat</a>
+			
+			<div class="chat-popup" id="myForm" style="display:none; height: 100%; background:#efefef;">
+			<div class="col-sm-12" id="chatTextarea" style="max-height:50%; overflow-y: scroll;">
+			
+			</div>
+			  <div class="form-container" style="position: absolute; bottom: 0; width: 100%;">
+			    <h1 style="color:#ffaa4d">Chat</h1>
+			
+			    <label for="msg" style="color:#48648f"><b>Poruke</b></label>
+			   <textarea class="form-control" id="messageTextarea" rows="2"></textarea>
+			
+			    <a onclick="sendMessage('#{USER.ime}'); return false;" class="btn">Send</a>
+			    <a class="btn cancel" onclick="closeForm()"> Close </a>
+			  </div>
+			</div>
+		
+		</h:form>
+	</h:panelGroup>
+	
+	<!-- footer -->
+	<ui:include src="includes/footer.xhtml" />
+ 	
+	<script src="./resources/js/bootstrap.min.js"></script>
+    <!--  <script src="./resources/js/main.js"></script>-->
+  
+  	<script>
+	
+
+		function initUser(user)
+		{
+			console.log(user);
+			localStorage.setItem("user", user);
+		}
+		
+		var socket = new WebSocket("ws://localhost:8081/Slatkisi/chat/" + localStorage.getItem("user"));
+
+		socket.onmessage = function(event) 
+		{
+			var chatTextArea = document.getElementById("chatTextarea");
+			var msg = JSON.parse(event.data);
+
+			var trenutni = localStorage.getItem("user");
+			
+			var str = "";
+			if(trenutni == msg.posiljalac){
+				stil = "msg_container_send";
+				stil_korisnik = "msg_user_send";
+				str += "<span class="+ stil_korisnik +">" + "Vi:&nbsp;</span>";
+				str +="<div class=" + stil +">";
+				str += msg.poruka;
+				str+="</div>";
+			}
+			else{
+				stil = "msg_container";
+				stil_korisnik = "msg_user";
+				str += "<span class="+ stil_korisnik +">"+ msg.posiljalac+"&nbsp;</span>";
+				str +="<div class=" + stil +">";
+				str += msg.poruka;
+				str+="</div>";
+			}
+			
+			chatTextArea.innerHTML += str;
+		}
+		
+		function sendMessage(user) 
+		{
+			var msg = {};
+			msg.posiljalac = user;
+			var ta = document.getElementById("messageTextarea");
+			msg.poruka = ta.value;
+			socket.send(JSON.stringify(msg));
+			ta.value = "";
+		}
+		
+		function openForm() 
+		{
+			  document.getElementById("myForm").style.display = "block";
+		}
+
+		function closeForm() 
+		{
+			  document.getElementById("myForm").style.display = "none";
+		}
+
+	</script>
+  
+
+</body>
+</html>

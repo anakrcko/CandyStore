@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough" 
+	>
+
+
+<!-- Head -->
+<ui:include src="includes/head.xhtml" />
+
+<h:panelGroup rendered="#{empty USER or USER.uloga ne 'admin' }">
+<h:form><h:commandButton value="login" rendered="#{korisnikBean.redirect()}" /></h:form>
+</h:panelGroup>
+
+<body>
+	
+	<h:form>
+		<h:commandLink rendered="#{proizvodBean.resetFilter() }" />
+		
+	</h:form>
+	<!-- Header -->
+	<ui:include src="includes/header.xhtml" />
+
+	<section id="cart_items">
+		<div class="container">
+		
+		<div style="display:flex; justify-content: center; padding-bottom:20px;">
+			<div class="table-responsive cart_info">
+				<h:form >
+					<table class="table table-condensed">
+					  <thead>
+					    <tr class="cart_menu">
+					      <th scope="col">Ime i prezime </th>
+					      <th scope="col">Broj telefona</th>
+					      <th scope="col">Cena</th>
+					      <th scope="col">Datum narucivanja</th>
+					      <th scope="col">Proizvodi</th>
+					      <th scope="col">Obrisi</th>
+					      <th scope="col">Potvrdi</th>
+					      
+					    </tr>
+					  </thead>
+					  <tbody>
+					  
+					  <ui:repeat value="#{porudzbinaBean.vratiSvePoruceno() }" var="items">
+					    <ui:repeat value="#{korisnikBean.vratiKorisnika(items.korisnikId)}" var="k">
+							
+					    <tr>
+					      <td><h:outputText style="font-weight: bold;" value="#{k.ime}"/> &nbsp; <h:outputText style="font-weight: bold;" value="#{k.prezime}"/></td>
+					      <td><h:outputText value="#{k.telefon}"/></td>
+					      <td><h:outputText value="#{items.suma}"/>&nbsp;rsd</td>
+					      <td><h:outputText value="#{items.datumKreiranja}"/></td>
+					      <td>
+					      	<h:commandLink  action="#{porudzbinaBean.dajProizvode(items)}" data-toggle="tab" > Proizvodi <f:ajax execute="@form" render="@form" /></h:commandLink>
+									
+					      </td>
+					     
+					     
+					     <td>
+							<h:commandLink class="btn btn-danger" action="#{porudzbinaBean.obrisiPorudzbinu(items)}" ><i class="fa fa-times"></i></h:commandLink>
+						 		
+						 </td>
+						 <td>
+					       <h:commandLink class="btn btn-success" action="#{porudzbinaBean.potvrdiPorudzbinu(items)}" ><i class="fa fa-check-square" aria-hidden="true"></i></h:commandLink>
+						 </td>
+					    
+					    </tr>
+					    </ui:repeat>
+					   </ui:repeat>
+					   </tbody>
+					</table>
+					  
+					   
+					    <h:panelGroup rendered="#{not empty POGLEDAJPORUDZBINU}">
+					   	<div class="table-responsive cart_info">
+							<table class="table table-condensed">
+							<thead>
+								<tr class="cart_menu">
+									<td class="image">Proizvod</td>
+									<td class="description">Naziv</td>
+									<td class="price">Cena</td>
+									<td class="quantity">Količina</td>
+									<td class="quantity">Na stanju</td>
+									
+								</tr>
+						   </thead>
+						   <tbody>
+						   <ui:repeat value="#{porudzbinaItemBean.vratiItems(POGLEDAJPORUDZBINU)}" var="pi">
+						   		<ui:repeat value="#{proizvodBean.vratiProizvod(pi.proizvodId)}" var="p">
+									<tr>
+										<td class="cart_product">
+											<img style="height:58px;" src="data:image/jpeg;base64, #{p.fotografija}"  alt="" /> 
+										</td>
+										
+										<td class="cart_description">
+											<h4 > <h:commandLink  action="#{proizvodBean.detaljiOProizvodu(p)}"> <h:outputText value="#{p.naziv}" /> </h:commandLink></h4>
+										</td>
+										
+										<td class="cart_price">
+											<p> <h:outputText value="#{p.cena}" /> rsd</p>
+										</td>
+										
+										<td class="cart_quantity">
+												<p> <h:outputText value="#{pi.kolicina}" /></p>
+										</td>
+										
+										<td class="cart_quantity">
+												<p> <h:outputText value="#{p.kolicina}" /></p>
+										</td>
+									</tr>
+								</ui:repeat>
+							</ui:repeat>
+							</tbody>
+							</table>
+						</div>
+						</h:panelGroup>
+				
+				</h:form>
+			</div>
+		 </div>
+		</div>
+	</section> <!--/#cart_items-->
+	
+<ui:include src="includes/footer.xhtml" />	
+	
+
+</body>
+</html>

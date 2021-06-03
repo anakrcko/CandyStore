@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	
+<!-- Head -->
+<ui:include src="includes/head.xhtml" />
+
+
+<h:panelGroup rendered="#{not empty USER}">
+<h:form><h:commandButton value="login" rendered="#{korisnikBean.redirect()}" /></h:form>
+</h:panelGroup>
+
+<body>
+
+	<!-- Header -->
+	<ui:include src="includes/header.xhtml" />
+
+	
+	<section id="form"><!--form-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-1">
+					<div class="login-form"><!--prijava-->
+						<h2>Uloguj se</h2>
+
+						<h:form id="form-prijava">
+							
+							<h:message role="alert" class="alert alert-danger d-block" id="message-prijava" for="message-prijava" />
+							
+							<h:inputText pt:type="email" pt:placeholder="Email" value="#{korisnikBean.email}" />
+							<h:inputText pt:type="password" pt:placeholder="Sifra" value="#{korisnikBean.password}" />
+							<h:commandButton class="btn btn-primary" value="Login" action="#{korisnikBean.prijava()}" />
+						</h:form>
+						
+					</div>
+				</div>
+				<div class="col-sm-1">
+					<h2 class="or">ILI</h2>
+				</div>
+				<div class="col-sm-4">
+					<div class="signup-form"><!--registracija-->
+						<h2>Registruj se</h2>
+						
+						<h:form id="form-registracija" >
+							
+							<h:message id="message-registracija" for="message-registracija" role="alert" class="alert alert-danger d-block"  />
+
+							<h:inputText type="text" pt:placeholder="Ime" value="#{korisnikBean.ime}" />
+							<h:inputText type="text" pt:placeholder="Prezime" value="#{korisnikBean.prezime}" />
+							<h:inputText pt:type="email" pt:placeholder="Email" value="#{korisnikBean.email}" />
+							<h:inputText pt:type="password" pt:placeholder="Sifra" value="#{korisnikBean.password}" />
+							<h:inputText pt:type="password" pt:placeholder="Ponovi Sifru" value="#{korisnikBean.ponovljeniPassword}" />
+							<h:inputText type="text" pt:placeholder="Adresa" value="#{korisnikBean.adresa}" />
+							<h:inputText type="text" pt:placeholder="Telefon" value="#{korisnikBean.telefon}" />
+							<h:commandButton class="btn btn-primary" value="Register" update="message-registracija" action="#{korisnikBean.registracija()}" />
+							
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!--/form-->
+	
+	
+	<!-- footer -->
+	<ui:include src="includes/footer.xhtml" />
+	
+	<script src="./resources/js/bootstrap.min.js"></script>
+    
+</body>
+</html>
