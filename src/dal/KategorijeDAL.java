@@ -66,13 +66,32 @@ public class KategorijeDAL
 		return null;
 	}
 	
-	public void dodajKategoriju(String dodajNaziv) 
+	public void dodajKategoriju(KategorijeBean kat) 
 	{
 		try {
 			entityManager.getTransaction().begin();
 			
 			Kategorija k = new Kategorija();
-			k.setNaziv(dodajNaziv);
+			k.setNaziv(kat.getNaziv());
+			k.setId(kat.getId());
+		
+			entityManager.persist(k);
+			
+			entityManager.getTransaction().commit();
+			
+		}catch (Exception e) {
+			System.out.println("Greska u upitu kod dodavanja kategorije.");
+			System.err.println(e);
+		}
+	}
+	
+	public void dodajKategorijuNaziv(String naziv)
+	{
+		try {
+			entityManager.getTransaction().begin();
+			
+			Kategorija k = new Kategorija();
+			k.setNaziv(naziv);
 		
 			entityManager.persist(k);
 			

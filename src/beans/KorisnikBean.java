@@ -227,34 +227,34 @@ public class KorisnikBean
 		
 		if(new KategorijeDAL().dajSveKategorije() == null)	//ako nemamo kategorije, dodajemo
 		{
-			new KategorijeDAL().dodajKategoriju("Torte");
-			new KategorijeDAL().dodajKategoriju("Kolači");
-			new KategorijeDAL().dodajKategoriju("Mafini");
-			new KategorijeDAL().dodajKategoriju("Čokolade");
-			new KategorijeDAL().dodajKategoriju("Slatki hleb");
-			new KategorijeDAL().dodajKategoriju("Brownie");
+			new KategorijeDAL().dodajKategoriju(new KategorijeBean(1,"Torte"));
+			new KategorijeDAL().dodajKategoriju(new KategorijeBean(2,"Kolači"));
+			new KategorijeDAL().dodajKategoriju(new KategorijeBean(3,"Mafini"));
+			new KategorijeDAL().dodajKategoriju(new KategorijeBean(4,"Čokolade"));
+			new KategorijeDAL().dodajKategoriju(new KategorijeBean(5,"Slatki hleb"));
+			new KategorijeDAL().dodajKategoriju(new KategorijeBean(6,"Brownie"));
 		}
 		
 		if(new ProizvodDAL().dajSveProizvode() == null) 	//ako nemamo proizvode, dodajemo
 		{
 			try {
 				
-				new ProizvodDAL().dodajProizvod(new ProizvodBean("Cheescake", "Torta sa sirom ili torta od sira, je slatka okrugla torta koja se satoji od jednog ili više slojeva. Glavni i najgušći sloj, sastoji se od mešavine mekog, svežeg sira, jaja i šećera; ako ima i donji sloj, on je obično tvrd ili se sastoji od samlevenih kolačića, slatkih krekera, peciva ili biskvit torte" , 1, 5, 550, "slika",""), extractBytes("/slike/1.jpg"));
-				new ProizvodDAL().dodajProizvod(new ProizvodBean("Tiramisu", "Tiramisu je italijanski desert sa kafom. Napravljen je od damskih prstiju namočenih u kafu, slojevitih šlagom od jaja, šećera i mascarpone sira, aromatiziran kakaom. Recept je prilagođen mnogim vrstama kolača i drugih deserta. Njeno poreklo je često ospor" , 1, 10, 550, "slika",""), extractBytes("/slike/2.jpg"));
-				new ProizvodDAL().dodajProizvod(new ProizvodBean("Čokoladna torta", "Čokoladna torta ili čokoladni gato je kolač aromatiziran rastopljenom čokoladom, kakaom u prahu ili oboje." , 1, 10, 500, "slika",""), extractBytes("/slike/3.jpg"));
-				new ProizvodDAL().dodajProizvod(new ProizvodBean("Milka", "Milka čokolada od 100g" , 4, 50, 60, "slika",""), extractBytes("/slike/4.jpg"));
-				new ProizvodDAL().dodajProizvod(new ProizvodBean("Najlepše želje", "" , 4, 50, 120, "slika",""), extractBytes("/slike/5.jpg"));
-				new ProizvodDAL().dodajProizvod(new ProizvodBean("Rafaelo kolač", "Rafaelo kolač se prodaje na gramazu. Prikazana cena je za 1 kg." , 2, 50, 400, "slika",""), extractBytes("/slike/7.jpg"));
-				new ProizvodDAL().dodajProizvod(new ProizvodBean("Snikers štanglice", "Snikers štanglice se prodaju na gramazu. Prikazana cena je za 1 kg." , 2, 150, 400, "slika",""), extractBytes("/slike/8 0.jpg"));
-				new ProizvodDAL().dodajProizvod(new ProizvodBean("Snikers kuglice", "Snikers kuglice se prodaju na gramazu. Prikazana cena je za 1 kg." , 2, 100, 450, "slika",""), extractBytes("/slike/8.jpg"));
-				new ProizvodDAL().dodajProizvod(new ProizvodBean("Čokoladni rolat", "" , 5, 20, 300, "slika",""), extractBytes("/slike/9.jpg"));
+				new ProizvodDAL().dodajProizvod(new ProizvodBean(1,"Cheescake", "Torta sa sirom ili torta od sira, je slatka okrugla torta koja se satoji od jednog ili više slojeva. Glavni i najgušći sloj, sastoji se od mešavine mekog, svežeg sira, jaja i šećera; ako ima i donji sloj, on je obično tvrd ili se sastoji od samlevenih kolačića, slatkih krekera, peciva ili biskvit torte" , 1, 5, 550, "slika",""), extractBytes("/slike/1.jpg"));
+				new ProizvodDAL().dodajProizvod(new ProizvodBean(2,"Tiramisu", "Tiramisu je italijanski desert sa kafom. Napravljen je od damskih prstiju namočenih u kafu, slojevitih šlagom od jaja, šećera i mascarpone sira, aromatiziran kakaom. Recept je prilagođen mnogim vrstama kolača i drugih deserta. Njeno poreklo je često ospor" , 1, 10, 550, "slika",""), extractBytes("/slike/2.jpg"));
+				new ProizvodDAL().dodajProizvod(new ProizvodBean(3,"Čokoladna torta", "Čokoladna torta ili čokoladni gato je kolač aromatiziran rastopljenom čokoladom, kakaom u prahu ili oboje." , 1, 10, 500, "slika",""), extractBytes("/slike/3.jpg"));
+				new ProizvodDAL().dodajProizvod(new ProizvodBean(4,"Milka", "Milka čokolada od 100g" , 4, 50, 60, "slika",""), extractBytes("/slike/4.jpg"));
+				new ProizvodDAL().dodajProizvod(new ProizvodBean(5,"Najlepše želje", "" , 4, 50, 120, "slika",""), extractBytes("/slike/5.jpg"));
+				new ProizvodDAL().dodajProizvod(new ProizvodBean(6,"Rafaelo kolač", "Rafaelo kolač se prodaje na gramazu. Prikazana cena je za 1 kg." , 2, 50, 400, "slika",""), extractBytes("/slike/7.jpg"));
+				new ProizvodDAL().dodajProizvod(new ProizvodBean(7,"Snikers štanglice", "Snikers štanglice se prodaju na gramazu. Prikazana cena je za 1 kg." , 2, 150, 400, "slika",""), extractBytes("/slike/8 0.jpg"));
+				new ProizvodDAL().dodajProizvod(new ProizvodBean(8,"Snikers kuglice", "Snikers kuglice se prodaju na gramazu. Prikazana cena je za 1 kg." , 2, 100, 450, "slika",""), extractBytes("/slike/8.jpg"));
+				new ProizvodDAL().dodajProizvod(new ProizvodBean(9,"Čokoladni rolat", "" , 5, 20, 300, "slika",""), extractBytes("/slike/9.jpg"));
 				
-				new ProizvodDAL().dodajProizvod(new ProizvodBean("Mafini sa jagodama", "Džem prepun sočnih bobica, ovi muffini od jagoda sa oštrim, zlatnim vrhovima lepi su koliko i ukusni." , 3, 15, 50, "slika",""), extractBytes("/slike/10.jpg"));
-				new ProizvodDAL().dodajProizvod(new ProizvodBean("Mafini sa borovnicama", "Prepuni svežom borovnicom sa nežnom mrvicom i svetlucavom koricom šećera, ovo su zaista najbolji mafini od borovnica." , 3, 15, 50, "slika",""), extractBytes("/slike/11.jpg"));
-				new ProizvodDAL().dodajProizvod(new ProizvodBean("Brookies (pločice sa kolačićima od braunja i čokolade)", "Napravljeni od mermernih slojeva testa za pecivo i testa od keksa od čokoladnih kolačića, brokiji su zabavna poslastica za sve uzraste." , 6, 25, 60, "slika",""), extractBytes("/slike/12.jpg"));
-				new ProizvodDAL().dodajProizvod(new ProizvodBean("Supernatural Brownies", "Prljavi u sredini i slatki na površini, ovi natprirodni kolači poslastičara Nick Malgieri-a zaista su van ovog sveta." , 6, 30, 60, "slika",""), extractBytes("/slike/12 0.jpg"));
-				new ProizvodDAL().dodajProizvod(new ProizvodBean("Čokoladni hleb od banane", "Čokoladni čips i kakao u prahu daju ovom hlebu od čokoladne banane dubok ukus čokolade, dok ga dodatak pavlake čini nežnijim." , 5, 80, 100, "slika",""), extractBytes("/slike/13.jpg"));
-				new ProizvodDAL().dodajProizvod(new ProizvodBean("Medenjaci", "Voleni od dece i odraslih, ovi staromodni medenjaci savršena su poslastica koja vam ostaje pri ruci tokom praznika." , 5, 200, 150, "slika",""), extractBytes("/slike/13 0.jpg"));
+				new ProizvodDAL().dodajProizvod(new ProizvodBean(10,"Mafini sa jagodama", "Džem prepun sočnih bobica, ovi muffini od jagoda sa oštrim, zlatnim vrhovima lepi su koliko i ukusni." , 3, 15, 50, "slika",""), extractBytes("/slike/10.jpg"));
+				new ProizvodDAL().dodajProizvod(new ProizvodBean(11,"Mafini sa borovnicama", "Prepuni svežom borovnicom sa nežnom mrvicom i svetlucavom koricom šećera, ovo su zaista najbolji mafini od borovnica." , 3, 15, 50, "slika",""), extractBytes("/slike/11.jpg"));
+				new ProizvodDAL().dodajProizvod(new ProizvodBean(12,"Brookies (pločice sa kolačićima od braunja i čokolade)", "Napravljeni od mermernih slojeva testa za pecivo i testa od keksa od čokoladnih kolačića, brokiji su zabavna poslastica za sve uzraste." , 6, 25, 60, "slika",""), extractBytes("/slike/12.jpg"));
+				new ProizvodDAL().dodajProizvod(new ProizvodBean(13,"Supernatural Brownies", "Prljavi u sredini i slatki na površini, ovi natprirodni kolači poslastičara Nick Malgieri-a zaista su van ovog sveta." , 6, 30, 60, "slika",""), extractBytes("/slike/12 0.jpg"));
+				new ProizvodDAL().dodajProizvod(new ProizvodBean(14,"Čokoladni hleb od banane", "Čokoladni čips i kakao u prahu daju ovom hlebu od čokoladne banane dubok ukus čokolade, dok ga dodatak pavlake čini nežnijim." , 5, 80, 100, "slika",""), extractBytes("/slike/13.jpg"));
+				new ProizvodDAL().dodajProizvod(new ProizvodBean(15,"Medenjaci", "Voleni od dece i odraslih, ovi staromodni medenjaci savršena su poslastica koja vam ostaje pri ruci tokom praznika." , 5, 200, 150, "slika",""), extractBytes("/slike/13 0.jpg"));
 				
 			} catch (IOException e) {
 				System.out.println("Nije dodat proizvod");

@@ -31,6 +31,12 @@ public class KategorijeBean
 		this.naziv = naziv;
 	}
 	
+	public KategorijeBean(String naziv) 
+	{
+		super();
+		this.naziv = naziv;
+	}
+	
 	 @PostConstruct
 	 public void init(){
 		 this.getKategorije();
@@ -108,7 +114,7 @@ public class KategorijeBean
 		
 		if(this.getNovNaziv() != "") //ako ima nov naziv (nije prazno)
 		{
-			new KategorijeDAL().dodajKategoriju(this.getNovNaziv());	//dodajemo ga
+			new KategorijeDAL().dodajKategorijuNaziv(this.getNovNaziv());	//dodajemo ga
 			this.setNovNaziv("");	//praznimo
 		}
 		else

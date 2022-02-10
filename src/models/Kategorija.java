@@ -25,7 +25,10 @@ public class Kategorija implements Serializable {
 		id = kategorija;
 		naziv = string;
 	}
-
+	
+	public Kategorija(String string) {
+		naziv = string;
+	}
 	public int getId() {
 		return this.id;
 	}

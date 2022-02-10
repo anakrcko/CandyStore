@@ -33,7 +33,22 @@ public class ProizvodDAL
 			if (results.isEmpty() == true) 
 				return null;
 			 
-			return extracted(results, listaProizvoda);
+			for (Proizvod p : results) 
+			{
+				ProizvodBean proizvodBean = new ProizvodBean();
+				
+				proizvodBean.setId(p.getId());
+				proizvodBean.setNaziv(p.getNaziv());
+				proizvodBean.setOpis(p.getOpis());
+				proizvodBean.setKolicina(p.getKolicina());
+				proizvodBean.setCena(p.getCena());
+				proizvodBean.setFotografija(Base64.getEncoder().encodeToString(p.getFotografija()));
+				proizvodBean.setKategorija(p.getKategorijaId());
+				
+				listaProizvoda.add(proizvodBean);
+			}
+			
+			return listaProizvoda;
 			
 		}catch (Exception e) {
 			System.out.println("Greska u upitu kod vracanja svih proizvoda.");
@@ -93,7 +108,21 @@ public class ProizvodDAL
 			if (results.isEmpty()) 
 				return null;
 			 
-			return extracted(results, listaProizvodaPoKategoriji);
+			for (Proizvod p : results) 
+			{
+				ProizvodBean proizvod = new ProizvodBean();
+				proizvod.setId(p.getId());
+				proizvod.setNaziv(p.getNaziv());
+				proizvod.setOpis(p.getOpis());
+				proizvod.setKolicina(p.getKolicina());
+				proizvod.setCena(p.getCena());
+				proizvod.setFotografija(Base64.getEncoder().encodeToString(p.getFotografija()));
+				proizvod.setKategorija(p.getKategorijaId());
+	
+				listaProizvodaPoKategoriji.add(proizvod);
+			}
+			
+			return listaProizvodaPoKategoriji;
 		
 		}catch (Exception e) {
 			System.out.println("Greska u upitu kod vracanja proizvoda po kategoriji.");
@@ -140,7 +169,7 @@ public class ProizvodDAL
 			proizvod.setKategorijaId(p.getKategorija());
 			*/
 			
-			Proizvod proizvod = new Proizvod(p.getCena(), buffer, p.getKategorija(), p.getKolicina(), p.getNaziv(), p.getOpis());
+			Proizvod proizvod = new Proizvod(p.getId(),p.getCena(), buffer, p.getKategorija(), p.getKolicina(), p.getNaziv(), p.getOpis());
 			entityManager.persist(proizvod);
 			
 			entityManager.getTransaction().commit();
@@ -202,7 +231,6 @@ public class ProizvodDAL
 			query.setParameter("id", proizvodID);
 	
 			query.executeUpdate();
-			
 			entityManager.getTransaction().commit();
 		}catch (Exception e) {
 			System.out.println("Greska u upitu kod menjanja kolicine proizvoda.");
@@ -224,7 +252,22 @@ public class ProizvodDAL
 			if (results.isEmpty() == true) 
 				return null;
 			 
-			return extracted(results, listaProizvoda);
+			for (Proizvod p : results) 
+			{
+				ProizvodBean proizvodBean = new ProizvodBean();
+				
+				proizvodBean.setId(p.getId());
+				proizvodBean.setNaziv(p.getNaziv());
+				proizvodBean.setOpis(p.getOpis());
+				proizvodBean.setKolicina(p.getKolicina());
+				proizvodBean.setCena(p.getCena());
+				proizvodBean.setFotografija(Base64.getEncoder().encodeToString(p.getFotografija()));
+				proizvodBean.setKategorija(p.getKategorijaId());
+				
+				listaProizvoda.add(proizvodBean);
+			}
+			
+			return listaProizvoda;
 			
 		}catch (Exception e) {
 			System.out.println("Greska u upitu kod vracanja proizvoda po pretrazi.");
@@ -248,7 +291,22 @@ public class ProizvodDAL
 			if (results.isEmpty() == true) 
 				return null;
 			 
-			return extracted(results, listaProizvoda);
+			for (Proizvod p : results) 
+			{
+				ProizvodBean proizvodBean = new ProizvodBean();
+				
+				proizvodBean.setId(p.getId());
+				proizvodBean.setNaziv(p.getNaziv());
+				proizvodBean.setOpis(p.getOpis());
+				proizvodBean.setKolicina(p.getKolicina());
+				proizvodBean.setCena(p.getCena());
+				proizvodBean.setFotografija(Base64.getEncoder().encodeToString(p.getFotografija()));
+				proizvodBean.setKategorija(p.getKategorijaId());
+				
+				listaProizvoda.add(proizvodBean);
+			}
+			
+			return listaProizvoda;
 			
 		}catch (Exception e) {
 			System.out.println("Greska u upitu kod vracanja proizvoda po kategoriji i po pretrazi.");
@@ -271,7 +329,22 @@ public class ProizvodDAL
 			if (results.isEmpty() == true) 
 				return null;
 			 
-			return extracted(results, listaProizvoda);
+			for (Proizvod p : results) 
+			{
+				ProizvodBean proizvodBean = new ProizvodBean();
+				
+				proizvodBean.setId(p.getId());
+				proizvodBean.setNaziv(p.getNaziv());
+				proizvodBean.setOpis(p.getOpis());
+				proizvodBean.setKolicina(p.getKolicina());
+				proizvodBean.setCena(p.getCena());
+				proizvodBean.setFotografija(Base64.getEncoder().encodeToString(p.getFotografija()));
+				proizvodBean.setKategorija(p.getKategorijaId());
+				
+				listaProizvoda.add(proizvodBean);
+			}
+			
+			return listaProizvoda;
 			
 		}catch (Exception e) {
 			System.out.println("Greska u upitu kod vracanja proizvoda manje od cene.");
@@ -296,7 +369,22 @@ public class ProizvodDAL
 			if (results.isEmpty() == true) 
 				return null;
 			 
-			return extracted(results, listaProizvoda);
+			for (Proizvod p : results) 
+			{
+				ProizvodBean proizvodBean = new ProizvodBean();
+				
+				proizvodBean.setId(p.getId());
+				proizvodBean.setNaziv(p.getNaziv());
+				proizvodBean.setOpis(p.getOpis());
+				proizvodBean.setKolicina(p.getKolicina());
+				proizvodBean.setCena(p.getCena());
+				proizvodBean.setFotografija(Base64.getEncoder().encodeToString(p.getFotografija()));
+				proizvodBean.setKategorija(p.getKategorijaId());
+				
+				listaProizvoda.add(proizvodBean);
+			}
+			
+			return listaProizvoda;
 			
 		}catch (Exception e) {
 			System.out.println("Greska u upitu kod vracanja proizvoda manje od cene i odredjene kategorije.");
@@ -321,7 +409,22 @@ public class ProizvodDAL
 			if (results.isEmpty() == true) 
 				return null;
 			 
-			return extracted(results, listaProizvoda);
+			for (Proizvod p : results) 
+			{
+				ProizvodBean proizvodBean = new ProizvodBean();
+				
+				proizvodBean.setId(p.getId());
+				proizvodBean.setNaziv(p.getNaziv());
+				proizvodBean.setOpis(p.getOpis());
+				proizvodBean.setKolicina(p.getKolicina());
+				proizvodBean.setCena(p.getCena());
+				proizvodBean.setFotografija(Base64.getEncoder().encodeToString(p.getFotografija()));
+				proizvodBean.setKategorija(p.getKategorijaId());
+				
+				listaProizvoda.add(proizvodBean);
+			}
+			
+			return listaProizvoda;
 			
 		}catch (Exception e) {
 			System.out.println("Greska u upitu kod vracanja proizvoda po svim filterima.");
@@ -330,7 +433,6 @@ public class ProizvodDAL
 		}
 	}
 
-	
 	public ArrayList<ProizvodBean> vratiProizvodePoCeniIPoPretrazi(float filterCena, String pretraga) {
 		List<Proizvod> results = new LinkedList<Proizvod>();
 		ArrayList<ProizvodBean> listaProizvoda = new ArrayList<ProizvodBean>();
@@ -345,7 +447,22 @@ public class ProizvodDAL
 			if (results.isEmpty() == true) 
 				return null;
 			 
-			return extracted(results, listaProizvoda);
+			for (Proizvod p : results) 
+			{
+				ProizvodBean proizvodBean = new ProizvodBean();
+				
+				proizvodBean.setId(p.getId());
+				proizvodBean.setNaziv(p.getNaziv());
+				proizvodBean.setOpis(p.getOpis());
+				proizvodBean.setKolicina(p.getKolicina());
+				proizvodBean.setCena(p.getCena());
+				proizvodBean.setFotografija(Base64.getEncoder().encodeToString(p.getFotografija()));
+				proizvodBean.setKategorija(p.getKategorijaId());
+				
+				listaProizvoda.add(proizvodBean);
+			}
+			
+			return listaProizvoda;
 			
 		}catch (Exception e) {
 			System.out.println("Greska u upitu kod vracanja proizvoda manje od cene i pretrage.");
@@ -353,25 +470,6 @@ public class ProizvodDAL
 			return null;
 		}    
 
-	}
-	
-	private ArrayList<ProizvodBean> extracted(List<Proizvod> results, ArrayList<ProizvodBean> listaProizvoda) {
-		for (Proizvod p : results) 
-		{
-			ProizvodBean proizvodBean = new ProizvodBean();
-			
-			proizvodBean.setId(p.getId());
-			proizvodBean.setNaziv(p.getNaziv());
-			proizvodBean.setOpis(p.getOpis());
-			proizvodBean.setKolicina(p.getKolicina());
-			proizvodBean.setCena(p.getCena());
-			proizvodBean.setFotografija(Base64.getEncoder().encodeToString(p.getFotografija()));
-			proizvodBean.setKategorija(p.getKategorijaId());
-			
-			listaProizvoda.add(proizvodBean);
-		}
-		
-		return listaProizvoda;
 	}
 
 }

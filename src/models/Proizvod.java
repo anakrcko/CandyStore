@@ -34,6 +34,17 @@ public class Proizvod implements Serializable {
 
 	public Proizvod() {
 	}
+	
+	public Proizvod(int id, float cena, byte[] fotografija, int kategorijaId, int kolicina, String naziv, String opis) {
+		super();
+		this.id = id;
+		this.cena = cena;
+		this.fotografija = fotografija;
+		this.kategorijaId = kategorijaId;
+		this.kolicina = kolicina;
+		this.naziv = naziv;
+		this.opis = opis;
+	}
 
 	public Proizvod(float cena, byte[] fotografija, int kategorijaId, int kolicina, String naziv, String opis) {
 		super();
